@@ -1,0 +1,65 @@
+{
+  "Body Type": {
+    "0": "normal",
+    "1": "obese",
+    "2": "overweight",
+    "3": "underweight"
+  },
+  "Sex": {
+    "0": "female",
+    "1": "male"
+  },
+  "Diet": {
+    "0": "omnivore",
+    "1": "pescatarian",
+    "2": "vegan",
+    "3": "vegetarian"
+  },
+  "How Often Shower": {
+    "0": "daily",
+    "1": "less frequently",
+    "2": "more frequently",
+    "3": "twice a day"
+  },
+  "Heating Energy Source": {
+    "0": "coal",
+    "1": "electricity",
+    "2": "natural gas",
+    "3": "wood"
+  },
+  "Transport": {
+    "0": "private",
+    "1": "public",
+    "2": "walk/bicycle"
+  },
+  "Vehicle Type": {
+    "0": "diesel",
+    "1": "electric",
+    "2": "hybrid",
+    "3": "lpg",
+    "4": "none",
+    "5": "petrol"
+  },
+  "Social Activity": {
+    "0": "never",
+    "1": "often",
+    "2": "sometimes"
+  },
+  "Frequency of Traveling by Air": {
+    "0": "frequently",
+    "1": "never",
+    "2": "rarely",
+    "3": "very frequently"
+  },
+  "Waste Bag Size": {
+    "0": "extra large",
+    "1": "large",
+    "2": "medium",
+    "3": "small"
+  },
+  "Energy efficiency": {
+    "0": "No",
+    "1": "Sometimes",
+    "2": "Yes"
+  }
+}
