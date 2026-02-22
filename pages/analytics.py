@@ -27,13 +27,36 @@ def show():
         "See exactly where your CO₂ comes from and how you stack up globally.</p>",
         unsafe_allow_html=True)
 
-    if 'breakdown' not in st.session_state:
+    if 'user_inputs' not in st.session_state:
         st.warning("⚠️ Please fill in the **🧮 Calculator** first.")
         return
 
-    breakdown = st.session_state['breakdown']
-    total     = st.session_state['total_co2']
-    global_avg = 4800
+    # Get the estimated total from calculator
+    total = st.session_state.get('estimated_co2', 2000)
+    global_avg = 2260  # Dataset average
+    
+    # Create a simple breakdown based on inputs
+    inputs = st.session_state['user_inputs']
+    
+    # Estimate breakdown (rough approximation)
+    car_emissions = inputs['vehicle_monthly_distance_km'] * 0.21 * 12 if inputs['transport'] == 0 else 0
+    air_emissions = {0: 510, 1: 0, 2: 255, 3: 1020}.get(inputs['frequency_of_traveling_by_air'], 255)
+    diet_emissions = {0: 1825, 1: 1095, 2: 365, 3: 730}.get(
+    inputs.get('diet_type', 1), 
+    1095
+)
+    energy_emissions = {0: 1200, 1: 800, 2: 600, 3: 500}.get(inputs['heating_energy_source'], 800)
+    lifestyle_emissions = inputs.get('monthly_grocery_bill', 150) * 3 + inputs.get('how_many_new_clothes_monthly', 3) * 25
+    
+    breakdown = {
+        'Car Travel': max(0, car_emissions),
+        'Public Transport': 300 if inputs.get('transport', 0) == 1 else 0,
+        'Flights': air_emissions,
+        'Home Energy': energy_emissions,
+        'Diet': diet_emissions,
+        'Shopping': lifestyle_emissions,
+        'Electronics': inputs.get('how_long_tv_pc_daily_hour', 5) * 0.05 * 365 + inputs.get('how_long_internet_daily_hour', 8) * 0.03 * 365,
+    }
 
     # ── ROW 1: Pie + Bar comparison ──────────────────────────────────────────
 
